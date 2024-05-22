@@ -1,0 +1,15 @@
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\PrimeTrack.exe.config
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\PrimeTrack.exe
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\PrimeTrack.pdb
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.csproj.AssemblyReference.cache
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\View\MainWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\App.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack_MarkupCompile.cache
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack_MarkupCompile.lref
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\View\MainWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.g.resources
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.Properties.Resources.resources
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.csproj.GenerateResource.cache
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.csproj.CoreCompileInputs.cache
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.exe
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.pdb
