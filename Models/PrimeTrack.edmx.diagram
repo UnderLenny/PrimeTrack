@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1901a9e24166477c8fa14c9c3a83f4fb" Name="Diagram1">
+        <EntityTypeShape EntityType="kpModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Клиент" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Партия" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Пользователь" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Пользователь_Роли" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Продукт" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Продукт_Партия" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Роли" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kpModel.Склад" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="kpModel.Заказывает" ManuallyRouted="false" />
+        <AssociationConnector Association="kpModel.Состоит2" ManuallyRouted="false" />
+        <AssociationConnector Association="kpModel.Хранится" ManuallyRouted="false" />
+        <AssociationConnector Association="kpModel.FK__Пользоват__ID_По__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="kpModel.FK__Пользоват__ID_По__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="kpModel.Состоит1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

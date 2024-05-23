@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,21 +64,70 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\LoginWindow.xaml.cs">
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\PrimeTrack.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrimeTrack.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrimeTrack.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrimeTrack.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrimeTrack.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Клиент.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Партия.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Пользователь.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Пользователь_Роли.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Продукт.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Продукт_Партия.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Роли.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Склад.cs">
+      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RegisterWindow.xaml.cs">
+    <Compile Include="Views\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\LoginWindow.xaml">
+    <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RegisterWindow.xaml">
+    <Page Include="Views\RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,6 +150,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\PrimeTrack.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PrimeTrack.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\PrimeTrack.edmx.diagram">
+      <DependentUpon>PrimeTrack.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,6 +171,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\close-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\PrimeTrack.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrimeTrack.edmx</DependentUpon>
+      <LastGenOutput>PrimeTrack.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PrimeTrack.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PrimeTrack.edmx</DependentUpon>
+      <LastGenOutput>PrimeTrack.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

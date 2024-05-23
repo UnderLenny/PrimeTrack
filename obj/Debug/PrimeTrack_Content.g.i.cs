@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/icons8-%d0%b7%d0%b0%d0%ba%d1%80%d1%8b%d1%82%d1%8c-%d0%be%d0%ba%d0%bd%d0" +
-    "%be-48.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/primetrack.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("models/primetrack.tt")]
 
 
