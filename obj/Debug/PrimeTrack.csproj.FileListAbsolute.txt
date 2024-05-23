@@ -22,3 +22,5 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.csproj.Co
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.csproj.Up2Date
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.exe
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.pdb
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\UserWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\UserWindow.baml

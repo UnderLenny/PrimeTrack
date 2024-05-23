@@ -155,7 +155,7 @@
                         <PasswordBox x:Name="PasswordBox" Height="45" FontSize="16" Style="{StaticResource BasePasswordBoxStyle}" Width="370"/>
                     </StackPanel>
 
-                    <Button Style="{StaticResource RoundButtonStyle}" Content="Войти" Height="45" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" FontFamily="Cascadia Code"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Войти" Height="45" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" FontFamily="Cascadia Code" Click="LoginButton_Click"/>
 
                     <TextBlock Text="Нет аккаунта? Создайте его!" FontSize="14" FontWeight="Bold" Foreground="#C0C0C0" HorizontalAlignment="Center" Margin="20,22,20,0" Cursor="Hand" FontFamily="Cascadia Code" MouseDown="TextBlock_MouseDown"/>
                 </StackPanel>
