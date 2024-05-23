@@ -7,7 +7,38 @@
         mc:Ignorable="d"
         Title="Регистрация" Height="550" Width="500" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
         Background="Transparent" WindowStyle="None">
+
     <Window.Resources>
+        
+        <!-- Стили для кнопки выхода-->
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                            <Image Source="../Resources/close-icon.png" Width="30" Height="30"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- Стили для textbox-->
         <Style x:Key="BaseTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="#fcfcfc" />
@@ -50,17 +81,27 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Arrow"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="0" 
-                            CornerRadius="15" 
-                            Width="{TemplateBinding Width}" 
-                            Height="{TemplateBinding Height}">
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="0" 
+                        CornerRadius="15" 
+                        Width="{TemplateBinding Width}" 
+                        Height="{TemplateBinding Height}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#485252"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#485252"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -68,6 +109,7 @@
     </Window.Resources>
 
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
         <Border CornerRadius="20">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -85,10 +127,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <Button Grid.Row="0" Margin="0,20,25,0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}" Click="CloseButton_Click" Grid.ColumnSpan="2">
+                    <Image Source="../Resources/close-icon.png" Width="30" Height="30"/>
+                </Button>
+
                 <!-- Header Section -->
                 <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,30,0,10" Grid.Column="1" Width="460">
                     <Image Source="../Resources/logo.png" Width="254" Height="194"/>
-                    <TextBlock Text="Регистрация" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"  FontFamily="Cascadia Code"/>
+                    <TextBlock Text="Регистрация" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,20,0,0"  FontFamily="Cascadia Code"/>
                 </StackPanel>
 
                 <!-- Login Form Section -->
@@ -104,7 +150,7 @@
 
                     <Button Style="{StaticResource RoundButtonStyle}" Content="Зарегистрироваться" Height="45" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" FontFamily="Cascadia Code"/>
 
-                    <TextBlock Text="Есть аккаунт? Войдите!" FontSize="14" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" FontFamily="Cascadia Code" MouseDown="TextBlock_MouseDown"/>
+                    <TextBlock Text="Есть аккаунт? Войдите!" FontSize="14" FontWeight="Bold" Foreground="#C0C0C0" HorizontalAlignment="Center" Margin="20,10,20,0" Cursor="Hand" FontFamily="Cascadia Code" MouseDown="TextBlock_MouseDown"/>
                 </StackPanel>
             </Grid>
         </Border>
