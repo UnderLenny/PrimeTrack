@@ -8,9 +8,6 @@ using System.Windows.Input;
 
 namespace PrimeTrack.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для RegisterWindow.xaml
-    /// </summary>
     public partial class RegisterWindow : Window
     {
         private readonly Connection connection = new Connection();
@@ -45,7 +42,8 @@ namespace PrimeTrack.Views
                 byte[] salt = GenerateSalt();
                 byte[] passwordHash = HashPassword(password, salt);
 
-                string query = "INSERT INTO Пользователь (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) VALUES (@Логин, @Пароль, @Соль, @Дата_Создания)";
+                string query = "INSERT INTO Пользователь (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) OUTPUT INSERTED.ID_Пользователя VALUES (@Логин, @Пароль, @Соль, @Дата_Создания)";
+                int userId;
                 using (SqlCommand command = new SqlCommand(query, connection.GetConnection()))
                 {
                     command.Parameters.AddWithValue("@Логин", login);
@@ -53,17 +51,18 @@ namespace PrimeTrack.Views
                     command.Parameters.AddWithValue("@Соль", salt);
                     command.Parameters.AddWithValue("@Дата_Создания", DateTime.Now);
 
-                    int result = command.ExecuteNonQuery();
-
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Регистрация прошла успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Произошла ошибка при регистрации.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    userId = (int)command.ExecuteScalar();
                 }
+
+                string roleQuery = "INSERT INTO Пользователь_Роль (ID_Пользователя, ID_Роли) SELECT @UserId, ID_Роли FROM Роли WHERE Название_Роли = 'Новый пользователь'";
+                using (SqlCommand roleCommand = new SqlCommand(roleQuery, connection.GetConnection()))
+                {
+                    roleCommand.Parameters.AddWithValue("@UserId", userId);
+                    roleCommand.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Регистрация прошла успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 var loginWindow = new LoginWindow();
                 loginWindow.Show();
                 this.Close();

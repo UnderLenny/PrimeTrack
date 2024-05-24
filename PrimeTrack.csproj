@@ -65,53 +65,50 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Connection.cs" />
-    <Compile Include="Models\PrimeTrack.Context.cs">
+    <Compile Include="Models\PrimeTrackModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PrimeTrack.Context.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PrimeTrack.cs">
+    <Compile Include="Models\PrimeTrackModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PrimeTrack.Designer.cs">
+    <Compile Include="Models\PrimeTrackModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PrimeTrack.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Клиент.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Партия.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Пользователь.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Пользователь_Роли.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+    <Compile Include="Models\Пользователь_Роль.cs">
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Продукт.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Продукт_Партия.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Роли.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Склад.cs">
-      <DependentUpon>PrimeTrack.tt</DependentUpon>
+      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -126,6 +123,13 @@
     <Compile Include="Views\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WaitingWindow.xaml.cs">
+      <DependentUpon>WaitingWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WaitingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,12 +165,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\PrimeTrack.edmx">
+    <EntityDeploy Include="Models\PrimeTrackModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PrimeTrack.Designer.cs</LastGenOutput>
+      <LastGenOutput>PrimeTrackModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\PrimeTrack.edmx.diagram">
-      <DependentUpon>PrimeTrack.edmx</DependentUpon>
+    <None Include="Models\PrimeTrackModel.edmx.diagram">
+      <DependentUpon>PrimeTrackModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -183,15 +191,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\PrimeTrack.Context.tt">
+    <Content Include="Models\PrimeTrackModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PrimeTrack.edmx</DependentUpon>
-      <LastGenOutput>PrimeTrack.Context.cs</LastGenOutput>
+      <DependentUpon>PrimeTrackModel.edmx</DependentUpon>
+      <LastGenOutput>PrimeTrackModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PrimeTrack.tt">
+    <Content Include="Models\PrimeTrackModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PrimeTrack.edmx</DependentUpon>
-      <LastGenOutput>PrimeTrack.cs</LastGenOutput>
+      <DependentUpon>PrimeTrackModel.edmx</DependentUpon>
+      <LastGenOutput>PrimeTrackModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

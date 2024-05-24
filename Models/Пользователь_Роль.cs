@@ -12,7 +12,7 @@ namespace PrimeTrack.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Пользователь_Роли
+    public partial class Пользователь_Роль
     {
         public int ID_Пользователя { get; set; }
         public int ID_Роли { get; set; }

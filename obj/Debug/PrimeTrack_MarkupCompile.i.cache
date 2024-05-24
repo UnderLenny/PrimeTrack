@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\App.xaml
-3-1492725187
-2-492409037
-231637212325
+5-1441059129
+2-245195015
+23-957185366
 181962107319
-Views\LoginWindow.xaml;Views\RegisterWindow.xaml;Views\UserWindow.xaml;
+Views\AdminWindow.xaml;Views\LoginWindow.xaml;Views\RegisterWindow.xaml;Views\UserWindow.xaml;Views\WaitingWindow.xaml;
 
-True
+False
 

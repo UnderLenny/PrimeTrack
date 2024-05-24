@@ -43,7 +43,7 @@ namespace PrimeTrack.Views
             try
             {
                 connection.OpenConnection();
-                string query = "SELECT Пароль_Hash, Пароль_Salt FROM Пользователь WHERE Логин = @Логин";
+                string query = "SELECT Пароль_Hash, Пароль_Salt, (SELECT TOP 1 Название_Роли FROM Роли R INNER JOIN Пользователь_Роли UR ON R.ID_Роли = UR.ID_Роли WHERE UR.ID_Пользователя = P.ID_Пользователя) AS Role FROM Пользователь P WHERE Логин = @Логин";
                 using (SqlCommand command = new SqlCommand(query, connection.GetConnection()))
                 {
                     command.Parameters.AddWithValue("@Логин", login);
@@ -53,13 +53,26 @@ namespace PrimeTrack.Views
                         {
                             byte[] storedHash = (byte[])reader["Пароль_Hash"];
                             byte[] storedSalt = (byte[])reader["Пароль_Salt"];
+                            string role = reader["Role"].ToString();
 
                             byte[] passwordHash = HashPassword(password, storedSalt);
                             if (CompareHashes(storedHash, passwordHash))
                             {
                                 MessageBox.Show("Вход выполнен успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                                UserWindow userWindow = new UserWindow();
-                                userWindow.Show();
+                                Window nextWindow;
+                                if (role == "Администратор")
+                                {
+                                    nextWindow = new AdminWindow();
+                                }
+                                else if (role == "Сотрудник")
+                                {
+                                    nextWindow = new UserWindow();
+                                }
+                                else
+                                {
+                                    nextWindow = new WaitingWindow(login);
+                                }
+                                nextWindow.Show();
                                 this.Close();
                             }
                             else
@@ -80,6 +93,7 @@ namespace PrimeTrack.Views
             }
             finally { connection.CloseConnection(); }
         }
+
 
         private byte[] HashPassword(string password, byte[] salt)
         {

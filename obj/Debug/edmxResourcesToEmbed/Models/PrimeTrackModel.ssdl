@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище kpModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Клиент">
+    <Key>
+      <PropertyRef Name="Код_Клиента" />
+    </Key>
+    <Property Name="Код_Клиента" Type="int" Nullable="false" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Имя" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Отчество" Type="varchar" MaxLength="20" />
+    <Property Name="Дата_Рождения" Type="date" />
+  </EntityType>
+  <EntityType Name="Партия">
+    <Key>
+      <PropertyRef Name="Код_Партии" />
+    </Key>
+    <Property Name="Код_Партии" Type="int" Nullable="false" />
+    <Property Name="Дата_Производства" Type="date" />
+    <Property Name="Время_Производства" Type="time" Precision="7" />
+    <Property Name="Код_Склада" Type="int" Nullable="false" />
+    <Property Name="Код_Клиента" Type="int" />
+    <Property Name="Дата_Отгрузки" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Пользователь">
+    <Key>
+      <PropertyRef Name="ID_Пользователя" />
+    </Key>
+    <Property Name="ID_Пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Логин" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Пароль_Hash" Type="varbinary" MaxLength="64" Nullable="false" />
+    <Property Name="Пароль_Salt" Type="varbinary" MaxLength="128" Nullable="false" />
+    <Property Name="Дата_Создания" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Пользователь_Роль">
+    <Key>
+      <PropertyRef Name="ID_Пользователя" />
+      <PropertyRef Name="ID_Роли" />
+    </Key>
+    <Property Name="ID_Пользователя" Type="int" Nullable="false" />
+    <Property Name="ID_Роли" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Продукт">
+    <Key>
+      <PropertyRef Name="Код_Продукта" />
+    </Key>
+    <Property Name="Код_Продукта" Type="int" Nullable="false" />
+    <Property Name="Название" Type="varchar" MaxLength="20" />
+    <Property Name="Производитель" Type="varchar" MaxLength="20" />
+    <Property Name="Описание" Type="char" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Продукт_Партия">
+    <Key>
+      <PropertyRef Name="Код_Продукта" />
+      <PropertyRef Name="Код_Партии" />
+    </Key>
+    <Property Name="Код_Продукта" Type="int" Nullable="false" />
+    <Property Name="Код_Партии" Type="int" Nullable="false" />
+    <Property Name="Количество" Type="int" />
+  </EntityType>
+  <EntityType Name="Роли">
+    <Key>
+      <PropertyRef Name="ID_Роли" />
+    </Key>
+    <Property Name="ID_Роли" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название_Роли" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Склад">
+    <Key>
+      <PropertyRef Name="Код_Склада" />
+    </Key>
+    <Property Name="Код_Склада" Type="int" Nullable="false" />
+    <Property Name="Местоположение" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Пользоват__ID_По__02084FDA">
+    <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Пользователь">
+        <PropertyRef Name="ID_Пользователя" />
+      </Principal>
+      <Dependent Role="Пользователь_Роль">
+        <PropertyRef Name="ID_Пользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Пользоват__ID_По__02FC7413">
+    <End Role="Роли" Type="Self.Роли" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Роли">
+        <PropertyRef Name="ID_Роли" />
+      </Principal>
+      <Dependent Role="Пользователь_Роль">
+        <PropertyRef Name="ID_Пользователя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Заказывает">
+    <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Партия" Type="Self.Партия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Клиент">
+        <PropertyRef Name="Код_Клиента" />
+      </Principal>
+      <Dependent Role="Партия">
+        <PropertyRef Name="Код_Клиента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Состоит1">
+    <End Role="Продукт" Type="Self.Продукт" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Продукт_Партия" Type="Self.Продукт_Партия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Продукт">
+        <PropertyRef Name="Код_Продукта" />
+      </Principal>
+      <Dependent Role="Продукт_Партия">
+        <PropertyRef Name="Код_Продукта" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Состоит2">
+    <End Role="Партия" Type="Self.Партия" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Продукт_Партия" Type="Self.Продукт_Партия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Партия">
+        <PropertyRef Name="Код_Партии" />
+      </Principal>
+      <Dependent Role="Продукт_Партия">
+        <PropertyRef Name="Код_Партии" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Хранится">
+    <End Role="Склад" Type="Self.Склад" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Партия" Type="Self.Партия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Склад">
+        <PropertyRef Name="Код_Склада" />
+      </Principal>
+      <Dependent Role="Партия">
+        <PropertyRef Name="Код_Склада" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище kpModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Партия" EntityType="Self.Партия" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пользователь_Роль" EntityType="Self.Пользователь_Роль" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Продукт" EntityType="Self.Продукт" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Продукт_Партия" EntityType="Self.Продукт_Партия" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Склад" EntityType="Self.Склад" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Пользоват__ID_По__02084FDA" Association="Self.FK__Пользоват__ID_По__02084FDA">
+      <End Role="Пользователь" EntitySet="Пользователь" />
+      <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Пользоват__ID_По__02FC7413" Association="Self.FK__Пользоват__ID_По__02FC7413">
+      <End Role="Роли" EntitySet="Роли" />
+      <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
+    </AssociationSet>
+    <AssociationSet Name="Заказывает" Association="Self.Заказывает">
+      <End Role="Клиент" EntitySet="Клиент" />
+      <End Role="Партия" EntitySet="Партия" />
+    </AssociationSet>
+    <AssociationSet Name="Состоит1" Association="Self.Состоит1">
+      <End Role="Продукт" EntitySet="Продукт" />
+      <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
+    </AssociationSet>
+    <AssociationSet Name="Состоит2" Association="Self.Состоит2">
+      <End Role="Партия" EntitySet="Партия" />
+      <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
+    </AssociationSet>
+    <AssociationSet Name="Хранится" Association="Self.Хранится">
+      <End Role="Склад" EntitySet="Склад" />
+      <End Role="Партия" EntitySet="Партия" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

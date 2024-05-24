@@ -24,3 +24,7 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.exe
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\PrimeTrack.pdb
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\UserWindow.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\UserWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\AdminWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\WaitingWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\AdminWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\WaitingWindow.baml

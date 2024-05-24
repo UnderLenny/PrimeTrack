@@ -17,13 +17,13 @@ namespace PrimeTrack.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Роли()
         {
-            this.Пользователь_Роли = new HashSet<Пользователь_Роли>();
+            this.Пользователь_Роль = new HashSet<Пользователь_Роль>();
         }
     
         public int ID_Роли { get; set; }
         public string Название_Роли { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Пользователь_Роли> Пользователь_Роли { get; set; }
+        public virtual ICollection<Пользователь_Роль> Пользователь_Роль { get; set; }
     }
 }

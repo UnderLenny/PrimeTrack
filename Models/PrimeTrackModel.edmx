@@ -46,7 +46,7 @@
           <Property Name="Пароль_Salt" Type="varbinary" MaxLength="128" Nullable="false" />
           <Property Name="Дата_Создания" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Пользователь_Роли">
+        <EntityType Name="Пользователь_Роль">
           <Key>
             <PropertyRef Name="ID_Пользователя" />
             <PropertyRef Name="ID_Роли" />
@@ -90,12 +90,12 @@
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Пользователь_Роли" Type="Self.Пользователь_Роли" Multiplicity="*" />
+          <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователь">
               <PropertyRef Name="ID_Пользователя" />
             </Principal>
-            <Dependent Role="Пользователь_Роли">
+            <Dependent Role="Пользователь_Роль">
               <PropertyRef Name="ID_Пользователя" />
             </Dependent>
           </ReferentialConstraint>
@@ -104,12 +104,12 @@
           <End Role="Роли" Type="Self.Роли" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Пользователь_Роли" Type="Self.Пользователь_Роли" Multiplicity="*" />
+          <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Роли">
               <PropertyRef Name="ID_Роли" />
             </Principal>
-            <Dependent Role="Пользователь_Роли">
+            <Dependent Role="Пользователь_Роль">
               <PropertyRef Name="ID_Пользователя" />
             </Dependent>
           </ReferentialConstraint>
@@ -170,60 +170,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="GetFullName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
-          <Parameter Name="Код_Клиента" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetTotalProductsInBatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="Код_Партии" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище kpModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Партия" EntityType="Self.Партия" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Пользователь_Роли" EntityType="Self.Пользователь_Роли" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователь_Роль" EntityType="Self.Пользователь_Роль" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Продукт" EntityType="Self.Продукт" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Продукт_Партия" EntityType="Self.Продукт_Партия" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Склад" EntityType="Self.Склад" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Пользоват__ID_По__02084FDA" Association="Self.FK__Пользоват__ID_По__02084FDA">
             <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="Пользователь_Роли" EntitySet="Пользователь_Роли" />
+            <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
           </AssociationSet>
           <AssociationSet Name="FK__Пользоват__ID_По__02FC7413" Association="Self.FK__Пользоват__ID_По__02FC7413">
             <End Role="Роли" EntitySet="Роли" />
-            <End Role="Пользователь_Роли" EntitySet="Пользователь_Роли" />
+            <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
           </AssociationSet>
           <AssociationSet Name="Заказывает" Association="Self.Заказывает">
             <End Role="Клиент" EntitySet="Клиент" />
@@ -291,17 +254,17 @@
           <Property Name="Пароль_Hash" Type="Binary" MaxLength="64" FixedLength="false" Nullable="false" />
           <Property Name="Пароль_Salt" Type="Binary" MaxLength="128" FixedLength="false" Nullable="false" />
           <Property Name="Дата_Создания" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Пользователь_Роли" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь" ToRole="Пользователь_Роли" />
+          <NavigationProperty Name="Пользователь_Роль" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь" ToRole="Пользователь_Роль" />
         </EntityType>
-        <EntityType Name="Пользователь_Роли">
+        <EntityType Name="Пользователь_Роль">
           <Key>
             <PropertyRef Name="ID_Пользователя" />
             <PropertyRef Name="ID_Роли" />
           </Key>
           <Property Name="ID_Пользователя" Type="Int32" Nullable="false" />
           <Property Name="ID_Роли" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Пользователь" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь_Роли" ToRole="Пользователь" />
-          <NavigationProperty Name="Роли" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Пользователь_Роли" ToRole="Роли" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь_Роль" ToRole="Пользователь" />
+          <NavigationProperty Name="Роли" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Пользователь_Роль" ToRole="Роли" />
         </EntityType>
         <EntityType Name="Продукт">
           <Key>
@@ -330,7 +293,7 @@
           </Key>
           <Property Name="ID_Роли" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название_Роли" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Пользователь_Роли" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Роли" ToRole="Пользователь_Роли" />
+          <NavigationProperty Name="Пользователь_Роль" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Роли" ToRole="Пользователь_Роль" />
         </EntityType>
         <EntityType Name="Склад">
           <Key>
@@ -386,12 +349,12 @@
           <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Пользователь_Роли" Type="Self.Пользователь_Роли" Multiplicity="*" />
+          <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Пользователь">
               <PropertyRef Name="ID_Пользователя" />
             </Principal>
-            <Dependent Role="Пользователь_Роли">
+            <Dependent Role="Пользователь_Роль">
               <PropertyRef Name="ID_Пользователя" />
             </Dependent>
           </ReferentialConstraint>
@@ -400,12 +363,12 @@
           <End Role="Роли" Type="Self.Роли" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Пользователь_Роли" Type="Self.Пользователь_Роли" Multiplicity="*" />
+          <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Роли">
               <PropertyRef Name="ID_Роли" />
             </Principal>
-            <Dependent Role="Пользователь_Роли">
+            <Dependent Role="Пользователь_Роль">
               <PropertyRef Name="ID_Пользователя" />
             </Dependent>
           </ReferentialConstraint>
@@ -429,7 +392,7 @@
           <EntitySet Name="Клиент" EntityType="Self.Клиент" />
           <EntitySet Name="Партия" EntityType="Self.Партия" />
           <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
-          <EntitySet Name="Пользователь_Роли" EntityType="Self.Пользователь_Роли" />
+          <EntitySet Name="Пользователь_Роль" EntityType="Self.Пользователь_Роль" />
           <EntitySet Name="Продукт" EntityType="Self.Продукт" />
           <EntitySet Name="Продукт_Партия" EntityType="Self.Продукт_Партия" />
           <EntitySet Name="Роли" EntityType="Self.Роли" />
@@ -448,58 +411,17 @@
           </AssociationSet>
           <AssociationSet Name="FK__Пользоват__ID_По__02084FDA" Association="Self.FK__Пользоват__ID_По__02084FDA">
             <End Role="Пользователь" EntitySet="Пользователь" />
-            <End Role="Пользователь_Роли" EntitySet="Пользователь_Роли" />
+            <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
           </AssociationSet>
           <AssociationSet Name="FK__Пользоват__ID_По__02FC7413" Association="Self.FK__Пользоват__ID_По__02FC7413">
             <End Role="Роли" EntitySet="Роли" />
-            <End Role="Пользователь_Роли" EntitySet="Пользователь_Роли" />
+            <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
           </AssociationSet>
           <AssociationSet Name="Состоит1" Association="Self.Состоит1">
             <End Role="Продукт" EntitySet="Продукт" />
             <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(kpModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(kpModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -551,9 +473,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Пользователь_Роли">
-            <EntityTypeMapping TypeName="kpModel.Пользователь_Роли">
-              <MappingFragment StoreEntitySet="Пользователь_Роли">
+          <EntitySetMapping Name="Пользователь_Роль">
+            <EntityTypeMapping TypeName="kpModel.Пользователь_Роль">
+              <MappingFragment StoreEntitySet="Пользователь_Роль">
                 <ScalarProperty Name="ID_Пользователя" ColumnName="ID_Пользователя" />
                 <ScalarProperty Name="ID_Роли" ColumnName="ID_Роли" />
               </MappingFragment>
@@ -594,30 +516,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище kpModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище kpModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище kpModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище kpModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="kpModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище kpModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="kpModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище kpModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище kpModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

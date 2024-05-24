@@ -1,0 +1,78 @@
+﻿<Window x:Class="PrimeTrack.Views.WaitingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimeTrack.Views"
+        mc:Ignorable="d"
+        Title="WaitingWindow" Height="450" Width="800" 
+        WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True"
+        Background="Transparent" WindowStyle="None">
+
+    <Window.Resources>
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                            <Image Source="../Resources/close-icon.png" Width="30" Height="30"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Border CornerRadius="20">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#343C3C" Offset="0.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="444*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button  Grid.Row="0" Margin="0,20,25,0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}" Click="CloseButton_Click" Grid.ColumnSpan="2">
+                    <Image Source="../Resources/close-icon.png" Width="30" Height="30"/>
+                </Button>
+
+                <!-- Header Section -->
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,80,0,0" Grid.ColumnSpan="3">
+                    <Image Source="../Resources/logo.png" Width="254" Height="194"/>
+                    <TextBlock FontSize="24" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" TextAlignment="Center" >
+                        Ожидайте <LineBreak/> Ваша регистрация скоро будет подтверждена
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Recheck Button -->
+                <Button Content="Перепроверить" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="RecheckButton_Click" Width="200" Height="50"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
