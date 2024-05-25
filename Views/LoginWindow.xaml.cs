@@ -1,29 +1,17 @@
 ﻿using PrimeTrack.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PrimeTrack.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         private readonly Connection connection = new Connection();
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -43,7 +31,18 @@ namespace PrimeTrack.Views
             try
             {
                 connection.OpenConnection();
-                string query = "SELECT Пароль_Hash, Пароль_Salt, (SELECT TOP 1 Название_Роли FROM Роли R INNER JOIN Пользователь_Роли UR ON R.ID_Роли = UR.ID_Роли WHERE UR.ID_Пользователя = P.ID_Пользователя) AS Role FROM Пользователь P WHERE Логин = @Логин";
+                string query = @"
+                    SELECT 
+                        Пароль_Hash, 
+                        Пароль_Salt, 
+                        (SELECT TOP 1 Название_Роли 
+                         FROM Роли R 
+                         INNER JOIN Пользователь_Роль UR 
+                         ON R.ID_Роли = UR.ID_Роли 
+                         WHERE UR.ID_Пользователя = P.ID_Пользователя) AS Role 
+                    FROM Пользователь P 
+                    WHERE Логин = @Логин";
+
                 using (SqlCommand command = new SqlCommand(query, connection.GetConnection()))
                 {
                     command.Parameters.AddWithValue("@Логин", login);
@@ -53,7 +52,7 @@ namespace PrimeTrack.Views
                         {
                             byte[] storedHash = (byte[])reader["Пароль_Hash"];
                             byte[] storedSalt = (byte[])reader["Пароль_Salt"];
-                            string role = reader["Role"].ToString();
+                            string role = reader["Role"]?.ToString() ?? string.Empty;
 
                             byte[] passwordHash = HashPassword(password, storedSalt);
                             if (CompareHashes(storedHash, passwordHash))
@@ -91,9 +90,11 @@ namespace PrimeTrack.Views
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            finally { connection.CloseConnection(); }
+            finally
+            {
+                connection.CloseConnection();
+            }
         }
-
 
         private byte[] HashPassword(string password, byte[] salt)
         {
@@ -120,8 +121,7 @@ namespace PrimeTrack.Views
             return true;
         }
 
-
-    private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
             {

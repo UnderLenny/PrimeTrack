@@ -38,6 +38,63 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                       BorderBrush="{TemplateBinding BorderBrush}" 
+                       BorderThickness="0" 
+                       CornerRadius="15" 
+                       Width="{TemplateBinding Width}" 
+                       Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                   Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                   To="#556464" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                   Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                                   To="LightGray" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                   Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                   To="#485252" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                                   Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                                   To="Transparent" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#485252"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </Window.Resources>
 
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
@@ -70,8 +127,7 @@
                     </TextBlock>
                 </StackPanel>
 
-                <!-- Recheck Button -->
-                <Button Content="Перепроверить" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="RecheckButton_Click" Width="200" Height="50"/>
+                <Button Style="{StaticResource RoundButtonStyle}" Content="Проверить" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="RecheckButton_Click" Width="200" Height="50" Grid.Column="1" Grid.Row="1"/>
             </Grid>
         </Border>
     </Grid>

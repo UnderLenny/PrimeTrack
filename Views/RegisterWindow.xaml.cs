@@ -37,45 +37,44 @@ namespace PrimeTrack.Views
 
             try
             {
-                connection.OpenConnection();
-
-                byte[] salt = GenerateSalt();
-                byte[] passwordHash = HashPassword(password, salt);
-
-                string query = "INSERT INTO Пользователь (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) OUTPUT INSERTED.ID_Пользователя VALUES (@Логин, @Пароль, @Соль, @Дата_Создания)";
-                int userId;
-                using (SqlCommand command = new SqlCommand(query, connection.GetConnection()))
+                using (SqlConnection sqlConnection = connection.GetConnection())
                 {
-                    command.Parameters.AddWithValue("@Логин", login);
-                    command.Parameters.AddWithValue("@Пароль", passwordHash);
-                    command.Parameters.AddWithValue("@Соль", salt);
-                    command.Parameters.AddWithValue("@Дата_Создания", DateTime.Now);
+                    sqlConnection.Open();
 
-                    userId = (int)command.ExecuteScalar();
+                    byte[] salt = GenerateSalt();
+                    byte[] passwordHash = HashPassword(password, salt);
+
+                    string insertUserQuery = "INSERT INTO Пользователь (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) OUTPUT INSERTED.ID_Пользователя VALUES (@Логин, @Пароль_Hash, @Пароль_Salt, GETDATE())";
+                    SqlCommand cmd = new SqlCommand(insertUserQuery, sqlConnection);
+                    cmd.Parameters.AddWithValue("@Логин", login);
+                    cmd.Parameters.AddWithValue("@Пароль_Hash", passwordHash);
+                    cmd.Parameters.AddWithValue("@Пароль_Salt", salt);
+
+                    int userId = (int)cmd.ExecuteScalar();
+
+                    string insertUserRoleQuery = "INSERT INTO Пользователь_Роль (ID_Пользователя, ID_Роли) VALUES (@ID_Пользователя, @ID_Роли)";
+                    SqlCommand roleCmd = new SqlCommand(insertUserRoleQuery, sqlConnection);
+                    roleCmd.Parameters.AddWithValue("@ID_Пользователя", userId);
+                    roleCmd.Parameters.AddWithValue("@ID_Роли", 2); 
+
+                    roleCmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Регистрация прошла успешно!");
                 }
-
-                string roleQuery = "INSERT INTO Пользователь_Роль (ID_Пользователя, ID_Роли) SELECT @UserId, ID_Роли FROM Роли WHERE Название_Роли = 'Новый пользователь'";
-                using (SqlCommand roleCommand = new SqlCommand(roleQuery, connection.GetConnection()))
-                {
-                    roleCommand.Parameters.AddWithValue("@UserId", userId);
-                    roleCommand.ExecuteNonQuery();
-                }
-
-                MessageBox.Show("Регистрация прошла успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                var loginWindow = new LoginWindow();
+                LoginWindow loginWindow = new LoginWindow();
                 loginWindow.Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка регистрации: {ex.Message}");
             }
             finally
             {
                 connection.CloseConnection();
             }
         }
+
 
         public static byte[] HashPassword(string password, byte[] salt)
         {
