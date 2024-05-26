@@ -9,6 +9,13 @@
       Title="UsersPage">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5"/>
+            <Button Content="Search" Click="SearchButton_Click" Width="200" Margin="5"/>
+            <Button Content="Add User" Click="AddUserButton_Click" Width="200" Margin="5"/>
+            <Button Content="Edit User" Click="EditUserButton_Click" Width="200" Margin="5"/>
+            <Button Content="Delete User" Click="DeleteUserButton_Click" Width="200" Margin="5"/>
+            <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="True" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

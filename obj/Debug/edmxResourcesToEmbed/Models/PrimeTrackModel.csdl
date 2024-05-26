@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="kpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="gev_kpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -14,26 +14,26 @@
     <Key>
       <PropertyRef Name="Код_Клиента" />
     </Key>
-    <Property Name="Код_Клиента" Type="Int32" Nullable="false" />
+    <Property Name="Код_Клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Фамилия" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Имя" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Отчество" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Дата_Рождения" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Партия" Relationship="Self.Заказывает" FromRole="Клиент" ToRole="Партия" />
+    <NavigationProperty Name="Партия" Relationship="Self.FK__Партия__Код_Клие__3F466844" FromRole="Клиент" ToRole="Партия" />
   </EntityType>
   <EntityType Name="Партия">
     <Key>
       <PropertyRef Name="Код_Партии" />
     </Key>
-    <Property Name="Код_Партии" Type="Int32" Nullable="false" />
+    <Property Name="Код_Партии" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Дата_Производства" Type="DateTime" Precision="0" />
     <Property Name="Время_Производства" Type="Time" Precision="7" />
     <Property Name="Код_Склада" Type="Int32" Nullable="false" />
     <Property Name="Код_Клиента" Type="Int32" />
     <Property Name="Дата_Отгрузки" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Клиент" Relationship="Self.Заказывает" FromRole="Партия" ToRole="Клиент" />
-    <NavigationProperty Name="Продукт_Партия" Relationship="Self.Состоит2" FromRole="Партия" ToRole="Продукт_Партия" />
-    <NavigationProperty Name="Склад" Relationship="Self.Хранится" FromRole="Партия" ToRole="Склад" />
+    <NavigationProperty Name="Клиент" Relationship="Self.FK__Партия__Код_Клие__3F466844" FromRole="Партия" ToRole="Клиент" />
+    <NavigationProperty Name="Склад" Relationship="Self.FK__Партия__Код_Скла__3E52440B" FromRole="Партия" ToRole="Склад" />
+    <NavigationProperty Name="Продукт_Партия" Relationship="Self.FK__Продукт_П__Код_П__4F7CD00D" FromRole="Партия" ToRole="Продукт_Партия" />
   </EntityType>
   <EntityType Name="Пользователь">
     <Key>
@@ -44,27 +44,17 @@
     <Property Name="Пароль_Hash" Type="Binary" MaxLength="64" FixedLength="false" Nullable="false" />
     <Property Name="Пароль_Salt" Type="Binary" MaxLength="128" FixedLength="false" Nullable="false" />
     <Property Name="Дата_Создания" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Пользователь_Роль" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь" ToRole="Пользователь_Роль" />
-  </EntityType>
-  <EntityType Name="Пользователь_Роль">
-    <Key>
-      <PropertyRef Name="ID_Пользователя" />
-      <PropertyRef Name="ID_Роли" />
-    </Key>
-    <Property Name="ID_Пользователя" Type="Int32" Nullable="false" />
-    <Property Name="ID_Роли" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Пользователь" Relationship="Self.FK__Пользоват__ID_По__02084FDA" FromRole="Пользователь_Роль" ToRole="Пользователь" />
-    <NavigationProperty Name="Роли" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Пользователь_Роль" ToRole="Роли" />
+    <NavigationProperty Name="Роли" Relationship="Self.Пользователь_Роль" FromRole="Пользователь" ToRole="Роли" />
   </EntityType>
   <EntityType Name="Продукт">
     <Key>
       <PropertyRef Name="Код_Продукта" />
     </Key>
-    <Property Name="Код_Продукта" Type="Int32" Nullable="false" />
+    <Property Name="Код_Продукта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Название" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Производитель" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Описание" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="Продукт_Партия" Relationship="Self.Состоит1" FromRole="Продукт" ToRole="Продукт_Партия" />
+    <NavigationProperty Name="Продукт_Партия" Relationship="Self.FK__Продукт_П__Код_П__4E88ABD4" FromRole="Продукт" ToRole="Продукт_Партия" />
   </EntityType>
   <EntityType Name="Продукт_Партия">
     <Key>
@@ -74,8 +64,8 @@
     <Property Name="Код_Продукта" Type="Int32" Nullable="false" />
     <Property Name="Код_Партии" Type="Int32" Nullable="false" />
     <Property Name="Количество" Type="Int32" />
-    <NavigationProperty Name="Партия" Relationship="Self.Состоит2" FromRole="Продукт_Партия" ToRole="Партия" />
-    <NavigationProperty Name="Продукт" Relationship="Self.Состоит1" FromRole="Продукт_Партия" ToRole="Продукт" />
+    <NavigationProperty Name="Партия" Relationship="Self.FK__Продукт_П__Код_П__4F7CD00D" FromRole="Продукт_Партия" ToRole="Партия" />
+    <NavigationProperty Name="Продукт" Relationship="Self.FK__Продукт_П__Код_П__4E88ABD4" FromRole="Продукт_Партия" ToRole="Продукт" />
   </EntityType>
   <EntityType Name="Роли">
     <Key>
@@ -83,17 +73,17 @@
     </Key>
     <Property Name="ID_Роли" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Название_Роли" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Пользователь_Роль" Relationship="Self.FK__Пользоват__ID_По__02FC7413" FromRole="Роли" ToRole="Пользователь_Роль" />
+    <NavigationProperty Name="Пользователь" Relationship="Self.Пользователь_Роль" FromRole="Роли" ToRole="Пользователь" />
   </EntityType>
   <EntityType Name="Склад">
     <Key>
       <PropertyRef Name="Код_Склада" />
     </Key>
-    <Property Name="Код_Склада" Type="Int32" Nullable="false" />
+    <Property Name="Код_Склада" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Местоположение" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Партия" Relationship="Self.Хранится" FromRole="Склад" ToRole="Партия" />
+    <NavigationProperty Name="Партия" Relationship="Self.FK__Партия__Код_Скла__3E52440B" FromRole="Склад" ToRole="Партия" />
   </EntityType>
-  <Association Name="Заказывает">
+  <Association Name="FK__Партия__Код_Клие__3F466844">
     <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -107,21 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Состоит2">
-    <End Role="Партия" Type="Self.Партия" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Продукт_Партия" Type="Self.Продукт_Партия" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Партия">
-        <PropertyRef Name="Код_Партии" />
-      </Principal>
-      <Dependent Role="Продукт_Партия">
-        <PropertyRef Name="Код_Партии" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Хранится">
+  <Association Name="FK__Партия__Код_Скла__3E52440B">
     <End Role="Склад" Type="Self.Склад" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -135,35 +111,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Пользоват__ID_По__02084FDA">
-    <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1">
+  <Association Name="FK__Продукт_П__Код_П__4F7CD00D">
+    <End Role="Партия" Type="Self.Партия" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
+    <End Role="Продукт_Партия" Type="Self.Продукт_Партия" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Пользователь">
-        <PropertyRef Name="ID_Пользователя" />
+      <Principal Role="Партия">
+        <PropertyRef Name="Код_Партии" />
       </Principal>
-      <Dependent Role="Пользователь_Роль">
-        <PropertyRef Name="ID_Пользователя" />
+      <Dependent Role="Продукт_Партия">
+        <PropertyRef Name="Код_Партии" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Пользоват__ID_По__02FC7413">
-    <End Role="Роли" Type="Self.Роли" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Пользователь_Роль" Type="Self.Пользователь_Роль" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Роли">
-        <PropertyRef Name="ID_Роли" />
-      </Principal>
-      <Dependent Role="Пользователь_Роль">
-        <PropertyRef Name="ID_Пользователя" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Состоит1">
+  <Association Name="FK__Продукт_П__Код_П__4E88ABD4">
     <End Role="Продукт" Type="Self.Продукт" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -177,39 +139,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Пользователь_Роль">
+    <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+    <End Role="Роли" Type="Self.Роли" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="kpEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Клиент" EntityType="Self.Клиент" />
     <EntitySet Name="Партия" EntityType="Self.Партия" />
     <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
-    <EntitySet Name="Пользователь_Роль" EntityType="Self.Пользователь_Роль" />
     <EntitySet Name="Продукт" EntityType="Self.Продукт" />
     <EntitySet Name="Продукт_Партия" EntityType="Self.Продукт_Партия" />
     <EntitySet Name="Роли" EntityType="Self.Роли" />
     <EntitySet Name="Склад" EntityType="Self.Склад" />
-    <AssociationSet Name="Заказывает" Association="Self.Заказывает">
+    <AssociationSet Name="FK__Партия__Код_Клие__3F466844" Association="Self.FK__Партия__Код_Клие__3F466844">
       <End Role="Клиент" EntitySet="Клиент" />
       <End Role="Партия" EntitySet="Партия" />
     </AssociationSet>
-    <AssociationSet Name="Состоит2" Association="Self.Состоит2">
-      <End Role="Партия" EntitySet="Партия" />
-      <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
-    </AssociationSet>
-    <AssociationSet Name="Хранится" Association="Self.Хранится">
+    <AssociationSet Name="FK__Партия__Код_Скла__3E52440B" Association="Self.FK__Партия__Код_Скла__3E52440B">
       <End Role="Склад" EntitySet="Склад" />
       <End Role="Партия" EntitySet="Партия" />
     </AssociationSet>
-    <AssociationSet Name="FK__Пользоват__ID_По__02084FDA" Association="Self.FK__Пользоват__ID_По__02084FDA">
-      <End Role="Пользователь" EntitySet="Пользователь" />
-      <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
+    <AssociationSet Name="FK__Продукт_П__Код_П__4F7CD00D" Association="Self.FK__Продукт_П__Код_П__4F7CD00D">
+      <End Role="Партия" EntitySet="Партия" />
+      <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
     </AssociationSet>
-    <AssociationSet Name="FK__Пользоват__ID_По__02FC7413" Association="Self.FK__Пользоват__ID_По__02FC7413">
-      <End Role="Роли" EntitySet="Роли" />
-      <End Role="Пользователь_Роль" EntitySet="Пользователь_Роль" />
-    </AssociationSet>
-    <AssociationSet Name="Состоит1" Association="Self.Состоит1">
+    <AssociationSet Name="FK__Продукт_П__Код_П__4E88ABD4" Association="Self.FK__Продукт_П__Код_П__4E88ABD4">
       <End Role="Продукт" EntitySet="Продукт" />
       <End Role="Продукт_Партия" EntitySet="Продукт_Партия" />
+    </AssociationSet>
+    <AssociationSet Name="Пользователь_Роль" Association="Self.Пользователь_Роль">
+      <End Role="Пользователь" EntitySet="Пользователь" />
+      <End Role="Роли" EntitySet="Роли" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

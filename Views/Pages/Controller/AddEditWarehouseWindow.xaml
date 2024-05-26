@@ -1,0 +1,16 @@
+﻿<Window x:Class="PrimeTrack.Views.Pages.Controller.AddEditWarehouseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
+        mc:Ignorable="d"
+        Title="AddEditWarehouseWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBox x:Name="LocationTextBox" Margin="5"/>
+            <Button Content="Save" Click="SaveButton_Click" Margin="5"/>
+            <Button Content="Cancel" Click="CancelButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

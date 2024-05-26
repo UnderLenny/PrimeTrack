@@ -9,6 +9,13 @@
       Title="ProductsPage">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" />
+            <Button Content="Search" Click="SearchButton_Click" Width="200" Margin="5"/>
+            <Button Content="Add Product" Click="AddProductButton_Click" Width="200" Margin="5"/>
+            <Button Content="Edit Product" Click="EditProductButton_Click" Width="200" Margin="5"/>
+            <Button Content="Delete Product" Click="DeleteProductButton_Click" Width="200" Margin="5"/>
+            <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="True" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

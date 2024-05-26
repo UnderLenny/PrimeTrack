@@ -93,9 +93,6 @@
     <Compile Include="Models\Пользователь.cs">
       <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Пользователь_Роль.cs">
-      <DependentUpon>PrimeTrackModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Продукт.cs">
       <DependentUpon>PrimeTrackModel.tt</DependentUpon>
     </Compile>
@@ -119,6 +116,18 @@
     </Compile>
     <Compile Include="Views\Pages\Controller\AddEditBatchWindow.xaml.cs">
       <DependentUpon>AddEditBatchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Controller\AddEditClientWindow.xaml.cs">
+      <DependentUpon>AddEditClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Controller\AddEditProductWindow.xaml.cs">
+      <DependentUpon>AddEditProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Controller\AddEditUserWindow.xaml.cs">
+      <DependentUpon>AddEditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Controller\AddEditWarehouseWindow.xaml.cs">
+      <DependentUpon>AddEditWarehouseWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
@@ -161,6 +170,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Controller\AddEditBatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Controller\AddEditClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Controller\AddEditProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Controller\AddEditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Controller\AddEditWarehouseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

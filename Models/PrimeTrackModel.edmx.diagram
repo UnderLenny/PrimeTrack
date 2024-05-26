@@ -4,22 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b7d3756a88104f17ab601871924c48f8" Name="Diagram1">
-        <EntityTypeShape EntityType="kpModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Клиент" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Партия" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Пользователь" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Пользователь_Роль" Width="2.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Продукт" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Продукт_Партия" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Роли" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="kpModel.Склад" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="kpModel.Заказывает" ManuallyRouted="false" />
-        <AssociationConnector Association="kpModel.Состоит2" ManuallyRouted="false" />
-        <AssociationConnector Association="kpModel.Хранится" ManuallyRouted="false" />
-        <AssociationConnector Association="kpModel.FK__Пользоват__ID_По__02084FDA" ManuallyRouted="false" />
-        <AssociationConnector Association="kpModel.FK__Пользоват__ID_По__02FC7413" ManuallyRouted="false" />
-        <AssociationConnector Association="kpModel.Состоит1" ManuallyRouted="false" />
+      <Diagram DiagramId="2d69185b7c904b0488e52a41fc0e48ef" Name="Diagram1">
+        <EntityTypeShape EntityType="gev_kpModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Клиент" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Партия" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Пользователь" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Продукт" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Продукт_Партия" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Роли" Width="1.5" PointX="8" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gev_kpModel.Склад" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="gev_kpModel.FK__Партия__Код_Клие__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="gev_kpModel.FK__Партия__Код_Скла__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="gev_kpModel.FK__Продукт_П__Код_П__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="gev_kpModel.FK__Продукт_П__Код_П__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="gev_kpModel.Пользователь_Роль" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

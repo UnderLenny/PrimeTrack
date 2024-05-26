@@ -17,7 +17,7 @@ namespace PrimeTrack.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Пользователь()
         {
-            this.Пользователь_Роль = new HashSet<Пользователь_Роль>();
+            this.Роли = new HashSet<Роли>();
         }
     
         public int ID_Пользователя { get; set; }
@@ -27,6 +27,6 @@ namespace PrimeTrack.Models
         public System.DateTime Дата_Создания { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Пользователь_Роль> Пользователь_Роль { get; set; }
+        public virtual ICollection<Роли> Роли { get; set; }
     }
 }

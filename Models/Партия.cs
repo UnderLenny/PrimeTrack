@@ -28,8 +28,8 @@ namespace PrimeTrack.Models
         public Nullable<System.DateTime> Дата_Отгрузки { get; set; }
     
         public virtual Клиент Клиент { get; set; }
+        public virtual Склад Склад { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Продукт_Партия> Продукт_Партия { get; set; }
-        public virtual Склад Склад { get; set; }
     }
 }

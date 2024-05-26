@@ -9,7 +9,7 @@ namespace PrimeTrack.Models
 {
     class Connection
     {
-        private readonly SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BO24OOP; Initial Catalog=kp; Integrated Security=True");
+        private readonly SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BO24OOP; Initial Catalog=gev_kp; Integrated Security=True");
 
         public void OpenConnection()
         {

@@ -85,7 +85,9 @@ namespace PrimeTrack.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Implement logout logic here
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -98,7 +100,6 @@ namespace PrimeTrack.Views
 
         private void SetActiveButton(Button activeButton)
         {
-            // Reset all buttons to the default style
             OverviewButton.Style = (Style)FindResource("menuButton");
             BatchesButton.Style = (Style)FindResource("menuButton");
             ProductsButton.Style = (Style)FindResource("menuButton");
@@ -107,7 +108,6 @@ namespace PrimeTrack.Views
             UsersButton.Style = (Style)FindResource("menuButton");
             ReportsButton.Style = (Style)FindResource("menuButton");
 
-            // Set the active button style
             activeButton.Style = (Style)FindResource("activeMenuButton");
         }
     }

@@ -43,3 +43,11 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\UsersPag
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\WarehousesPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditBatchWindow.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditBatchWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditProductWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditProductWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditWarehouseWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditWarehouseWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditClientWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditClientWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditUserWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditUserWindow.baml

@@ -9,6 +9,13 @@
       Title="ClientsPage">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5"/>
+            <Button Content="Search" Click="SearchButton_Click" Width="200" Margin="5"/>
+            <Button Content="Add Client" Click="AddClientButton_Click" Width="200" Margin="5"/>
+            <Button Content="Edit Client" Click="EditClientButton_Click" Width="200" Margin="5"/>
+            <Button Content="Delete Client" Click="DeleteClientButton_Click" Width="200" Margin="5"/>
+            <DataGrid x:Name="ClientsDataGrid" AutoGenerateColumns="True" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

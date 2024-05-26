@@ -29,7 +29,6 @@ namespace PrimeTrack.Models
         public virtual DbSet<Клиент> Клиент { get; set; }
         public virtual DbSet<Партия> Партия { get; set; }
         public virtual DbSet<Пользователь> Пользователь { get; set; }
-        public virtual DbSet<Пользователь_Роль> Пользователь_Роль { get; set; }
         public virtual DbSet<Продукт> Продукт { get; set; }
         public virtual DbSet<Продукт_Партия> Продукт_Партия { get; set; }
         public virtual DbSet<Роли> Роли { get; set; }
