@@ -117,6 +117,9 @@
     <Compile Include="Views\Pages\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Controller\AddEditBatchWindow.xaml.cs">
+      <DependentUpon>AddEditBatchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Controller\AddEditBatchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

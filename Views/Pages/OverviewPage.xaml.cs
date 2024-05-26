@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PrimeTrack.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,36 @@ namespace PrimeTrack.Views.Pages
         public OverviewPage()
         {
             InitializeComponent();
+            LoadOverviewData();
+        }
+        private void LoadOverviewData()
+        {
+            var connection = new Connection();
+
+            try
+            {
+                connection.OpenConnection();
+                using (var sqlConnection = connection.GetConnection())
+                {
+                    // Получение количества клиентов
+                    SqlCommand clientCountCommand = new SqlCommand("SELECT COUNT(*) FROM [dbo].[Клиент]", sqlConnection);
+                    int clientCount = (int)clientCountCommand.ExecuteScalar();
+                    ClientCountTextBlock.Text = clientCount.ToString();
+
+                    // Получение количества партий на складе
+                    SqlCommand batchCountCommand = new SqlCommand("SELECT COUNT(*) FROM [dbo].[Партия]", sqlConnection);
+                    int batchCount = (int)batchCountCommand.ExecuteScalar();
+                    BatchCountTextBlock.Text = batchCount.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при загрузке данных: " + ex.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+            }
         }
     }
 }

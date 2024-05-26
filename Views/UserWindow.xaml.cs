@@ -1,71 +1,91 @@
 ﻿using PrimeTrack.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using PrimeTrack.Views.Pages;
 
 namespace PrimeTrack.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для UserWindow.xaml
-    /// </summary>
     public partial class UserWindow : Window
     {
         public UserWindow(bool isAdmin)
         {
             InitializeComponent();
-
             DataContext = new MainWindowViewModel(isAdmin);
-        }
 
-        private void OverviewButton_Click(object sender, RoutedEventArgs e)
-        {
+            // Set initial page and active button style
             MainFrame.Navigate(new OverviewPage());
+            SetActiveButton(OverviewButton);
         }
 
-        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ClientsPage());
-        }
-
-        private void BatchesButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new BatchesPage());
+            if (sender is Button button)
+            {
+                switch (button.Name)
+                {
+                    case "OverviewButton":
+                        MainFrame.Navigate(new OverviewPage());
+                        break;
+                    case "ClientsButton":
+                        MainFrame.Navigate(new ClientsPage());
+                        break;
+                    case "BatchesButton":
+                        MainFrame.Navigate(new BatchesPage());
+                        break;
+                    case "ProductsButton":
+                        MainFrame.Navigate(new ProductsPage());
+                        break;
+                    case "WarehousesButton":
+                        MainFrame.Navigate(new WarehousesPage());
+                        break;
+                    case "UsersButton":
+                        MainFrame.Navigate(new UsersPage());
+                        break;
+                    case "ReportsButton":
+                        MainFrame.Navigate(new ReportsPage());
+                        break;
+                    default:
+                        break;
+                }
+                SetActiveButton(button);
+            }
         }
 
         private void ProductsButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ProductsPage());
+            SetActiveButton(sender as Button);
         }
 
         private void WarehousesButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new WarehousesPage());
+            SetActiveButton(sender as Button);
+        }
+
+        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ClientsPage());
+            SetActiveButton(sender as Button);
         }
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new UsersPage());
+            SetActiveButton(sender as Button);
         }
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ReportsPage());
+            SetActiveButton(sender as Button);
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Implement logout functionality
+            // Implement logout logic here
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -74,6 +94,21 @@ namespace PrimeTrack.Views
             {
                 this.DragMove();
             }
+        }
+
+        private void SetActiveButton(Button activeButton)
+        {
+            // Reset all buttons to the default style
+            OverviewButton.Style = (Style)FindResource("menuButton");
+            BatchesButton.Style = (Style)FindResource("menuButton");
+            ProductsButton.Style = (Style)FindResource("menuButton");
+            WarehousesButton.Style = (Style)FindResource("menuButton");
+            ClientsButton.Style = (Style)FindResource("menuButton");
+            UsersButton.Style = (Style)FindResource("menuButton");
+            ReportsButton.Style = (Style)FindResource("menuButton");
+
+            // Set the active button style
+            activeButton.Style = (Style)FindResource("activeMenuButton");
         }
     }
 }

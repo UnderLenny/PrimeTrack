@@ -1,0 +1,35 @@
+﻿<Window x:Class="PrimeTrack.Views.Pages.Controller.AddEditBatchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
+        mc:Ignorable="d"
+        Title="Редактирование партии" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Код Партии:" />
+            <TextBox Name="BatchCodeTextBox" IsReadOnly="True" />
+
+            <TextBlock Text="Дата Производства:" Margin="0,10,0,0"/>
+            <DatePicker Name="ProductionDatePicker" />
+
+            <TextBlock Text="Время Производства:" Margin="0,10,0,0"/>
+            <TextBox Name="ProductionTimeTextBox" />
+
+            <TextBlock Text="Код Склада:" Margin="0,10,0,0"/>
+            <TextBox Name="WarehouseCodeTextBox" />
+
+            <TextBlock Text="Код Клиента:" Margin="0,10,0,0"/>
+            <TextBox Name="ClientCodeTextBox" />
+
+            <TextBlock Text="Дата Отгрузки:" Margin="0,10,0,0"/>
+            <DatePicker Name="ShipmentDatePicker" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Сохранить" Click="SaveButton_Click" Margin="5"/>
+                <Button Content="Отмена" Click="CancelButton_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

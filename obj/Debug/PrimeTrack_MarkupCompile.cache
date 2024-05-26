@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\App.xaml
-11-245357001
+121773256028
 2-245195015
-30-47712763
+31-1107821000
 181962107319
-Views\LoginWindow.xaml;Views\Pages\BatchesPage.xaml;Views\Pages\ClientsPage.xaml;Views\Pages\OverviewPage.xaml;Views\Pages\ProductsPage.xaml;Views\Pages\ReportsPage.xaml;Views\Pages\UsersPage.xaml;Views\Pages\WarehousesPage.xaml;Views\RegisterWindow.xaml;Views\UserWindow.xaml;Views\WaitingWindow.xaml;
+Views\LoginWindow.xaml;Views\Pages\BatchesPage.xaml;Views\Pages\ClientsPage.xaml;Views\Pages\Controller\AddEditBatchWindow.xaml;Views\Pages\OverviewPage.xaml;Views\Pages\ProductsPage.xaml;Views\Pages\ReportsPage.xaml;Views\Pages\UsersPage.xaml;Views\Pages\WarehousesPage.xaml;Views\RegisterWindow.xaml;Views\UserWindow.xaml;Views\WaitingWindow.xaml;
 
 True
 

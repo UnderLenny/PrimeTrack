@@ -12,10 +12,10 @@
     <Window.Resources>
         <Style x:Key="menuButton" TargetType="Button">
             <Setter Property="Height" Value="47" />
-            <Setter Property="Width" Value="217" />
+            <Setter Property="Width" Value="240" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#f0f0f0" />
-            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="Margin" Value="0 6 0 0" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Template">
@@ -75,14 +75,23 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
+                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}}" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
+                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
-
+        
         <Style x:Key="buttonText" TargetType="TextBlock">
-            <Setter Property="Margin" Value="13 0 0 0" />
+            <Setter Property="Margin" Value="10 0 0 0" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-
 
         <Style x:Key="border" TargetType="Border">
             <Setter Property="CornerRadius" Value="25" />
@@ -152,7 +161,19 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <!-- Триггер, который переопределяет стили при наведении -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
+                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}}" />
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Self}}" />
+                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Self}}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
 
 
         <Style x:Key="textLabel" TargetType="TextBlock">
@@ -266,6 +287,20 @@
             </Style.Triggers>
         </Style>
 
+
+        <Style x:Key="bankCardNumber" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#fcfcfc" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="17 0" />
+        </Style>
+
+        <Style x:Key="cardBorder" TargetType="Border">
+            <Setter Property="Height" Value="150" />
+            <Setter Property="CornerRadius" Value="25" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+
         <Style x:Key="button" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#f0f0f0" />
@@ -311,116 +346,120 @@
         </Style>
     </Window.Resources>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-        <!-- Background grid-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <!-- Background grid -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <Border Width="220" CornerRadius="25 0 0 25">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#343C3C" Offset="0" />
-                            <GradientStop Color="#343C3C" Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
+            <Border Width="220" CornerRadius="25 0 0 25">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#343C3C" Offset="0" />
+                        <GradientStop Color="#343C3C" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
 
-                <Border CornerRadius="0 25 25 0" Grid.Column="1">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#343C3C" Offset="0" />
-                            <GradientStop Color="#4E5555" Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-            </Grid>
+            <Border CornerRadius="0 25 25 0" Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#343C3C" Offset="0" />
+                        <GradientStop Color="#4E5555" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
 
-            <!-- Controls-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <!-- Controls -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!--Main Menu-->
-                <StackPanel Width="240">
-                    <StackPanel Orientation="Horizontal" Margin="0 50 20 40" HorizontalAlignment="Center">
-                        <Image Source="../Resources/logo.png" Width="72" Height="70"/>
-                        <TextBlock Text="PrimeTrack" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#FFFFFF" Width="134" FontFamily="Cascadia Code"/>
-                    </StackPanel>
-
-                    <Button x:Name="OverviewButton" Style="{StaticResource menuButton}" Click="OverviewButton_Click">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Обзор" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="BatchesButton" Style="{StaticResource menuButton}" Click="BatchesButton_Click">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Управление партиями" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="ProductsButton" Style="{StaticResource menuButton}" Click="ProductsButton_Click">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Управление продуктами" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="WarehousesButton" Style="{StaticResource menuButton}" Click="WarehousesButton_Click">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Управление складом" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="ClientsButton" Style="{StaticResource menuButton}" Click="ClientsButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Управление клиентами" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="UsersButton" Style="{StaticResource menuButton}" Click="UsersButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Управление пользователями" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Button x:Name="ReportsButton" Style="{StaticResource menuButton}" Click="ReportsButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Отчеты и аналитика" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
-
-                    <Separator Background="#e0e0e0" Opacity="0.5" Margin="50 15 60 15"/>
-
-                    <Button Style="{StaticResource menuButton}" Click="LogoutButton_Click">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="Выход" FontWeight="Bold" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                            </StackPanel>
-                        </Grid>
-                    </Button>
+            <!-- Main Menu -->
+            <StackPanel Width="240">
+                <StackPanel Orientation="Horizontal" Margin="20 50 20 40" HorizontalAlignment="Center">
+                    <Image Source="../Resources/logo.png" Width="62" Height="70"/>
+                    <TextBlock Text="PrimeTrack" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="#FFFFFF" Width="134" FontFamily="Cascadia Code"/>
                 </StackPanel>
 
-                <!-- Frame for displaying pages -->
-                <Frame x:Name="MainFrame" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
-            </Grid>
+                <Button x:Name="OverviewButton" Style="{StaticResource menuButton}" Click="MenuButton_Click" Tag="OverviewPage">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="115*"/>
+                            <ColumnDefinition Width="82*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Обзор" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="BatchesButton" Style="{StaticResource menuButton}" Click="MenuButton_Click" Tag="BatchesPage">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Управление партиями" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="ProductsButton" Style="{StaticResource menuButton}" Click="ProductsButton_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Управление продуктами" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="WarehousesButton" Style="{StaticResource menuButton}" Click="WarehousesButton_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Управление складом" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="ClientsButton" Style="{StaticResource menuButton}" Click="ClientsButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Управление клиентами" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="UsersButton" Style="{StaticResource menuButton}" Click="UsersButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Управление пользователями" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="ReportsButton" Style="{StaticResource menuButton}" Click="ReportsButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Отчеты и аналитика" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Separator Background="#e0e0e0" Opacity="0.5" Margin="20 15 40 15"/>
+
+                <Button Style="{StaticResource menuButton}" Click="LogoutButton_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="Выход" FontWeight="Bold" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+            <!-- Frame for displaying pages -->
+            <Frame x:Name="MainFrame" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
         </Grid>
+    </Grid>
 </Window>

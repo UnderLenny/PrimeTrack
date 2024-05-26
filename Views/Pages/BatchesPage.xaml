@@ -9,6 +9,30 @@
       Title="BatchesPage">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBlock FontSize="20" FontWeight="Bold" Margin="10" Text="Управление партиями" />
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Content="Добавить партию" Click="AddBatchButton_Click" Margin="5"/>
+                <Button Content="Редактировать партию" Click="EditBatchButton_Click" Margin="5"/>
+                <Button Content="Удалить партию" Click="DeleteBatchButton_Click" Margin="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBox Name="SearchTextBox" Width="200" Margin="5"/>
+                <Button Content="Поиск" Click="SearchButton_Click" Margin="5"/>
+            </StackPanel>
+
+            <DataGrid Name="BatchesDataGrid" AutoGenerateColumns="False" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Код Партии" Binding="{Binding Код_Партии}" Width="*"/>
+                    <DataGridTextColumn Header="Дата Производства" Binding="{Binding Дата_Производства}" Width="*"/>
+                    <DataGridTextColumn Header="Время Производства" Binding="{Binding Время_Производства}" Width="*"/>
+                    <DataGridTextColumn Header="Код Склада" Binding="{Binding Код_Склада}" Width="*"/>
+                    <DataGridTextColumn Header="Код Клиента" Binding="{Binding Код_Клиента}" Width="*"/>
+                    <DataGridTextColumn Header="Дата Отгрузки" Binding="{Binding Дата_Отгрузки}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Page>
