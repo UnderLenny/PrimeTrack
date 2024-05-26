@@ -120,7 +120,7 @@
                 </Button>
 
                 <!-- Header Section -->
-                <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,80,0,0" Grid.ColumnSpan="3">
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,65,0,0" Grid.ColumnSpan="3">
                     <Image Source="../Resources/logo.png" Width="254" Height="194"/>
                     <TextBlock FontSize="24" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" TextAlignment="Center" >
                         Ожидайте <LineBreak/> Ваша регистрация скоро будет подтверждена

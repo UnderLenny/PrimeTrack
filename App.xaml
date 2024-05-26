@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:PrimeTrack"
              StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -61,11 +61,11 @@ namespace PrimeTrack.Views
                                 Window nextWindow;
                                 if (role == "Администратор")
                                 {
-                                    nextWindow = new AdminWindow();
+                                    nextWindow = new UserWindow(true);
                                 }
                                 else if (role == "Сотрудник")
                                 {
-                                    nextWindow = new UserWindow();
+                                    nextWindow = new UserWindow(false);
                                 }
                                 else
                                 {

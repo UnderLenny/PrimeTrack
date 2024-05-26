@@ -17,19 +17,6 @@ namespace PrimeTrack.Views
             login = userLogin;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ButtonState == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
-
         private void RecheckButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -48,11 +35,11 @@ namespace PrimeTrack.Views
                             Window nextWindow;
                             if (role == "Администратор")
                             {
-                                nextWindow = new AdminWindow();
+                                nextWindow = new UserWindow(true);
                             }
                             else if (role == "Сотрудник")
                             {
-                                nextWindow = new UserWindow();
+                                nextWindow = new UserWindow(false);
                             }
                             else
                             {
@@ -72,6 +59,21 @@ namespace PrimeTrack.Views
             finally
             {
                 connection.CloseConnection();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
             }
         }
     }

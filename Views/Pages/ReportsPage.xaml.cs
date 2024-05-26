@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PrimeTrack.Views
+namespace PrimeTrack.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для ReportsPage.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class ReportsPage : Page
     {
-        public AdminWindow()
+        public ReportsPage()
         {
             InitializeComponent();
         }
