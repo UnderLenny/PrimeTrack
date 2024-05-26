@@ -1,0 +1,26 @@
+﻿<Window x:Class="PrimeTrack.Views.Pages.Controller.AddEditBatchProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
+        mc:Ignorable="d"
+        Title="Добавить/Редактировать Продукт Партии" Height="300" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Код Продукта" Margin="5"/>
+            <TextBox Name="ProductCodeTextBox" Margin="5"/>
+
+            <TextBlock Text="Код Партии" Margin="5"/>
+            <TextBox Name="BatchCodeTextBox" Margin="5"/>
+
+            <TextBlock Text="Количество" Margin="5"/>
+            <TextBox Name="QuantityTextBox" Margin="5"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                <Button Content="Сохранить" Click="SaveButton_Click" Margin="5"/>
+                <Button Content="Отмена" Click="CancelButton_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

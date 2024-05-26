@@ -23,133 +23,139 @@ namespace PrimeTrack.Views.Pages.Controller
     /// </summary>
     public partial class AddEditUserWindow : Window
     {
-        private readonly User _user;
+            private readonly User _user;
 
-        public AddEditUserWindow(User user = null)
-        {
-            InitializeComponent();
-            _user = user;
-            LoadRoles(); // Load roles into the combo box
-
-            if (_user != null)
+            public AddEditUserWindow(User user = null)
             {
-                LoginTextBox.Text = _user.Логин;
-                RoleComboBox.SelectedItem = _user.Роль;
-                // Оставляем поле пароля пустым
-            }
-        }
+                InitializeComponent();
+                _user = user;
+                LoadRoles();
 
-        private void LoadRoles()
-        {
-            var connection = new Connection();
-
-            try
-            {
-                connection.OpenConnection();
-                using (var sqlConnection = connection.GetConnection())
+                if (_user != null)
                 {
-                    SqlCommand command = new SqlCommand("SELECT Название_Роли FROM [dbo].[Роли]", sqlConnection);
-                    SqlDataReader reader = command.ExecuteReader();
-                    var roles = new List<string>();
-
-                    while (reader.Read())
-                    {
-                        roles.Add(reader.GetString(0));
-                    }
-
-                    RoleComboBox.ItemsSource = roles;
-                    reader.Close();
+                    LoginTextBox.Text = _user.Логин;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при загрузке ролей: " + ex.Message);
-            }
-            finally
-            {
-                connection.CloseConnection();
-            }
-        }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            string login = LoginTextBox.Text;
-            string password = PasswordBox.Password;
-            string role = RoleComboBox.SelectedItem.ToString();
-
-            var connection = new Connection();
-
-            try
+            private void LoadRoles()
             {
-                connection.OpenConnection();
-                using (var sqlConnection = connection.GetConnection())
+                var connection = new Connection();
+
+                try
                 {
-                    SqlCommand command;
-                    int roleId;
-
-                    // Get the role ID from the roles table
-                    using (var roleCommand = new SqlCommand("SELECT ID_Роли FROM [dbo].[Роли] WHERE Название_Роли = @Роль", sqlConnection))
+                    connection.OpenConnection();
+                    using (var sqlConnection = connection.GetConnection())
                     {
-                        roleCommand.Parameters.AddWithValue("@Роль", role);
-                        roleId = (int)roleCommand.ExecuteScalar();
+                        SqlCommand command = new SqlCommand("SELECT Название_Роли FROM [dbo].[Роли]", sqlConnection);
+                        SqlDataReader reader = command.ExecuteReader();
+                        var roles = new List<string>();
+
+                        while (reader.Read())
+                        {
+                            roles.Add(reader.GetString(0));
+                        }
+
+                        RoleComboBox.ItemsSource = roles;
+                        reader.Close();
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при загрузке ролей: " + ex.Message);
+                }
+                finally
+                {
+                    connection.CloseConnection();
+                }
+            }
 
-                    if (_user == null) // Add new user
+            private void SaveButton_Click(object sender, RoutedEventArgs e)
+            {
+                string login = LoginTextBox.Text;
+                string password = PasswordBox.Password;
+
+                if (RoleComboBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Пожалуйста, выберите роль.");
+                    return;
+                }
+
+                string role = RoleComboBox.SelectedItem.ToString();
+
+                var connection = new Connection();
+
+                try
+                {
+                    connection.OpenConnection();
+                    using (var sqlConnection = connection.GetConnection())
                     {
-                        var salt = GenerateSalt();
-                        var passwordHash = HashPassword(password, salt);
+                        SqlCommand command;
+                        int roleId;
 
-                        command = new SqlCommand(
-                            "INSERT INTO [dbo].[Пользователь] (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) VALUES (@Логин, @Пароль_Hash, @Пароль_Salt, @Дата_Создания); " +
-                            "DECLARE @UserID int = SCOPE_IDENTITY(); " +
-                            "INSERT INTO [dbo].[Пользователь_Роль] (ID_Пользователя, ID_Роли) VALUES (@UserID, @ID_Роли)",
-                            sqlConnection);
-                        command.Parameters.AddWithValue("@Дата_Создания", DateTime.Now);
-                        command.Parameters.AddWithValue("@Пароль_Hash", passwordHash);
-                        command.Parameters.AddWithValue("@Пароль_Salt", salt);
-                    }
-                    else // Edit existing user
-                    {
-                        command = new SqlCommand(
-                            "UPDATE [dbo].[Пользователь] SET Логин = @Логин WHERE ID_Пользователя = @ID_Пользователя; " +
-                            "UPDATE [dbo].[Пользователь_Роль] SET ID_Роли = @ID_Роли WHERE ID_Пользователя = @ID_Пользователя",
-                            sqlConnection);
-                        command.Parameters.AddWithValue("@ID_Пользователя", _user.ID_Пользователя);
+                        using (var roleCommand = new SqlCommand("SELECT ID_Роли FROM [dbo].[Роли] WHERE Название_Роли = @Роль", sqlConnection))
+                        {
+                            roleCommand.Parameters.AddWithValue("@Роль", role);
+                            roleId = (int)roleCommand.ExecuteScalar();
+                        }
 
-                        // Update the password only if it has been changed
-                        if (!string.IsNullOrEmpty(password))
+                        if (_user == null) 
                         {
                             var salt = GenerateSalt();
                             var passwordHash = HashPassword(password, salt);
-                            SqlCommand updatePasswordCommand = new SqlCommand(
-                                "UPDATE [dbo].[Пользователь] SET Пароль_Hash = @Пароль_Hash, Пароль_Salt = @Пароль_Salt WHERE ID_Пользователя = @ID_Пользователя",
+
+                            command = new SqlCommand(
+                                "INSERT INTO [dbo].[Пользователь] (Логин, Пароль_Hash, Пароль_Salt, Дата_Создания) VALUES (@Логин, @Пароль_Hash, @Пароль_Salt, @Дата_Создания); " +
+                                "DECLARE @UserID int = SCOPE_IDENTITY(); " +
+                                "INSERT INTO [dbo].[Пользователь_Роль] (ID_Пользователя, ID_Роли) VALUES (@UserID, @ID_Роли)",
                                 sqlConnection);
-                            updatePasswordCommand.Parameters.AddWithValue("@Пароль_Hash", passwordHash);
-                            updatePasswordCommand.Parameters.AddWithValue("@Пароль_Salt", salt);
-                            updatePasswordCommand.Parameters.AddWithValue("@ID_Пользователя", _user.ID_Пользователя);
-                            updatePasswordCommand.ExecuteNonQuery();
+                            command.Parameters.AddWithValue("@Дата_Создания", DateTime.Now);
+                            command.Parameters.AddWithValue("@Пароль_Hash", passwordHash);
+                            command.Parameters.AddWithValue("@Пароль_Salt", salt);
                         }
+                        else 
+                        {
+                            if (string.IsNullOrWhiteSpace(password))
+                            {
+                                command = new SqlCommand(
+                                    "UPDATE [dbo].[Пользователь] SET Логин = @Логин WHERE ID_Пользователя = @ID_Пользователя; " +
+                                    "UPDATE [dbo].[Пользователь_Роль] SET ID_Роли = @ID_Роли WHERE ID_Пользователя = @ID_Пользователя",
+                                    sqlConnection);
+                            }
+                            else
+                            {
+                                var salt = GenerateSalt();
+                                var passwordHash = HashPassword(password, salt);
+
+                                command = new SqlCommand(
+                                    "UPDATE [dbo].[Пользователь] SET Логин = @Логин, Пароль_Hash = @Пароль_Hash, Пароль_Salt = @Пароль_Salt WHERE ID_Пользователя = @ID_Пользователя; " +
+                                    "UPDATE [dbo].[Пользователь_Роль] SET ID_Роли = @ID_Роли WHERE ID_Пользователя = @ID_Пользователя",
+                                    sqlConnection);
+                                command.Parameters.AddWithValue("@Пароль_Hash", passwordHash);
+                                command.Parameters.AddWithValue("@Пароль_Salt", salt);
+                            }
+                            command.Parameters.AddWithValue("@ID_Пользователя", _user.ID_Пользователя);
+                        }
+
+                        command.Parameters.AddWithValue("@Логин", login);
+                        command.Parameters.AddWithValue("@ID_Роли", roleId);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Пользователь успешно сохранен.");
+                        Close();
                     }
-
-                    command.Parameters.AddWithValue("@Логин", login);
-                    command.Parameters.AddWithValue("@ID_Роли", roleId);
-
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Пользователь успешно сохранен.");
-                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при сохранении пользователя: " + ex.Message);
+                }
+                finally
+                {
+                    connection.CloseConnection();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении пользователя: " + ex.Message);
-            }
-            finally
-            {
-                connection.CloseConnection();
-            }
-        }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+
+            private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

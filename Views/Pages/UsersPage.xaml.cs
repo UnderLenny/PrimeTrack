@@ -38,8 +38,7 @@ namespace PrimeTrack.Views.Pages
                         {
                             ID_Пользователя = reader.GetInt32(0),
                             Логин = reader.GetString(1),
-                            Пароль_Hash = Convert.ToBase64String(passwordHash), // Для удобства отображения
-                            Пароль_Salt = Convert.ToBase64String(passwordSalt), // Для удобства отображения
+                            Пароль_Hash = Convert.ToBase64String(passwordHash),
                             Дата_Создания = reader.GetDateTime(4)
                         });
                     }
@@ -138,7 +137,6 @@ namespace PrimeTrack.Views.Pages
                             ID_Пользователя = reader.GetInt32(0),
                             Логин = reader.GetString(1),
                             Пароль_Hash = Convert.ToBase64String(passwordHash), 
-                            Пароль_Salt = Convert.ToBase64String(passwordSalt), 
                             Дата_Создания = reader.GetDateTime(4)
                         });
                     }
@@ -162,9 +160,7 @@ namespace PrimeTrack.Views.Pages
             public int ID_Пользователя { get; set; }
             public string Логин { get; set; }
             public string Пароль_Hash { get; set; }
-            public string Пароль_Salt { get; set; }
             public DateTime Дата_Создания { get; set; }
-            public string Роль { get; set; } 
         }
     }
 }

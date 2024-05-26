@@ -439,14 +439,6 @@
                     </Grid>
                 </Button>
 
-                <Button x:Name="ReportsButton" Style="{StaticResource menuButton}" Click="ReportsButton_Click" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <TextBlock Text="Отчеты и аналитика" Style="{StaticResource buttonText}" FontFamily="Cascadia Code" />
-                        </StackPanel>
-                    </Grid>
-                </Button>
-
                 <Separator Background="#e0e0e0" Opacity="0.5" Margin="20 15 40 15"/>
 
                 <Button Style="{StaticResource menuButton}" Click="LogoutButton_Click">

@@ -43,9 +43,6 @@ namespace PrimeTrack.Views
                     case "UsersButton":
                         MainFrame.Navigate(new UsersPage());
                         break;
-                    case "ReportsButton":
-                        MainFrame.Navigate(new ReportsPage());
-                        break;
                     default:
                         break;
                 }
@@ -77,12 +74,6 @@ namespace PrimeTrack.Views
             SetActiveButton(sender as Button);
         }
 
-        private void ReportsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new ReportsPage());
-            SetActiveButton(sender as Button);
-        }
-
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();
@@ -106,7 +97,6 @@ namespace PrimeTrack.Views
             WarehousesButton.Style = (Style)FindResource("menuButton");
             ClientsButton.Style = (Style)FindResource("menuButton");
             UsersButton.Style = (Style)FindResource("menuButton");
-            ReportsButton.Style = (Style)FindResource("menuButton");
 
             activeButton.Style = (Style)FindResource("activeMenuButton");
         }

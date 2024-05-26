@@ -30,7 +30,6 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\BatchesP
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ClientsPage.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\OverviewPage.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ProductsPage.g.cs
-D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ReportsPage.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\UsersPage.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\WarehousesPage.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\App.baml
@@ -38,7 +37,6 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\BatchesP
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ClientsPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\OverviewPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ProductsPage.baml
-D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\ReportsPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\UsersPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\WarehousesPage.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditBatchWindow.g.cs
@@ -51,3 +49,12 @@ D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controll
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditClientWindow.baml
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditUserWindow.g.cs
 D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditUserWindow.baml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.dll
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.Wpf.dll
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.pdb
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.xml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.Wpf.pdb
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\LiveCharts.Wpf.xml
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditBatchProductWindow.g.cs
+D:\develop\KuzSTU college\Выдрин\PrimeTrack\obj\Debug\Views\Pages\Controller\AddEditBatchProductWindow.baml
