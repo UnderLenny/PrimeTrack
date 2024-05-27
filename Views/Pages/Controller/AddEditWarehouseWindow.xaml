@@ -6,12 +6,95 @@
         xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddEditWarehouseWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <TextBox x:Name="LocationTextBox" Margin="5"/>
-            <Button Content="Save" Click="SaveButton_Click" Margin="5"/>
-            <Button Content="Cancel" Click="CancelButton_Click" Margin="5"/>
-        </StackPanel>
+        Title="Добавить/Редактировать Склад" Height="250" Width="300">
+
+    <Window.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+               BorderBrush="{TemplateBinding BorderBrush}" 
+               BorderThickness="3" 
+               CornerRadius="15" 
+               Width="{TemplateBinding Width}" 
+               Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                           To="#556464" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                           To="LightGray" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                           To="#485252" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                           To="Transparent" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#485252"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#394141">
+        <Border Background="#343C3C" CornerRadius="10" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Margin="10">
+                <TextBlock Text="Местоположение" Margin="5"/>
+                <TextBox x:Name="LocationTextBox" Margin="5"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Сохранить" Click="SaveButton_Click" Margin="5"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Отмена" Click="CancelButton_Click" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
