@@ -89,6 +89,11 @@ namespace PrimeTrack.Views
             }
         }
 
+        private void CloseButton_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void SetActiveButton(Button activeButton)
         {
             OverviewButton.Style = (Style)FindResource("menuButton");

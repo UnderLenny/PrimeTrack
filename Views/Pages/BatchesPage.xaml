@@ -8,47 +8,174 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BatchesPage">
 
+    <Page.Resources>
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="#394141" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#394141"/>
+            <Setter Property="RowBackground" Value="#2F2F2F"/>
+            <Setter Property="AlternatingRowBackground" Value="#3E3E3E"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="Padding" Value="5,2,5,2"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2B2B2B"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="5,3,5,3"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+
+        <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+               BorderBrush="{TemplateBinding BorderBrush}" 
+               BorderThickness="3" 
+               CornerRadius="15" 
+               Width="{TemplateBinding Width}" 
+               Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                           To="#556464" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                           To="LightGray" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                           To="#485252" Duration="0:0:0.3"/>
+                                            <ColorAnimation Storyboard.TargetName="border" 
+                                           Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                           To="Transparent" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#485252"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <StackPanel>
-            <TextBlock FontSize="20" FontWeight="Bold" Margin="10" Text="Управление партиями" />
+        <Border Style="{StaticResource BorderStyle}">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#343C3C" Offset="0.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <Button Content="Добавить партию" Click="AddBatchButton_Click" Margin="5"/>
-                <Button Content="Редактировать партию" Click="EditBatchButton_Click" Margin="5"/>
-                <Button Content="Удалить партию" Click="DeleteBatchButton_Click" Margin="5"/>
-            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBox Name="SearchTextBox" Width="200" Margin="5"/>
-                <Button Content="Поиск" Click="SearchButton_Click" Margin="5"/>
-            </StackPanel>
+                <TextBlock FontSize="20" Grid.Row="0" Text="Управление партиями" HorizontalAlignment="Center" Margin="50"/>
 
-            <DataGrid Name="BatchesDataGrid" AutoGenerateColumns="False" Margin="10">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код Партии" Binding="{Binding Код_Партии}" Width="*"/>
-                    <DataGridTextColumn Header="Дата Производства" Binding="{Binding Дата_Производства}" Width="*"/>
-                    <DataGridTextColumn Header="Время Производства" Binding="{Binding Время_Производства}" Width="*"/>
-                    <DataGridTextColumn Header="Код Склада" Binding="{Binding Код_Склада}" Width="*"/>
-                    <DataGridTextColumn Header="Код Клиента" Binding="{Binding Код_Клиента}" Width="*"/>
-                    <DataGridTextColumn Header="Дата Отгрузки" Binding="{Binding Дата_Отгрузки}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Добавить партию" Click="AddBatchButton_Click"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Редактировать партию" Click="EditBatchButton_Click"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Удалить партию" Click="DeleteBatchButton_Click"/>
+                </StackPanel>
 
-            <TextBlock FontSize="20" FontWeight="Bold" Margin="10" Text="Продукты Партии" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <TextBox Name="SearchTextBox" Width="200" Margin="5"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Поиск" Click="SearchButton_Click"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <Button Content="Добавить продукт" Click="AddBatchProductButton_Click" Margin="5"/>
-                <Button Content="Редактировать продукт" Click="EditBatchProductButton_Click" Margin="5"/>
-                <Button Content="Удалить продукт" Click="DeleteBatchProductButton_Click" Margin="5"/>
-            </StackPanel>
+                <DataGrid Name="BatchesDataGrid" AutoGenerateColumns="False" Grid.Row="3" Margin="10" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Код Партии" Binding="{Binding Код_Партии}" Width="*"/>
+                        <DataGridTextColumn Header="Дата Производства" Binding="{Binding Дата_Производства}" Width="*"/>
+                        <DataGridTextColumn Header="Время Производства" Binding="{Binding Время_Производства}" Width="*"/>
+                        <DataGridTextColumn Header="Код Склада" Binding="{Binding Код_Склада}" Width="*"/>
+                        <DataGridTextColumn Header="Код Клиента" Binding="{Binding Код_Клиента}" Width="*"/>
+                        <DataGridTextColumn Header="Дата Отгрузки" Binding="{Binding Дата_Отгрузки}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-            <DataGrid Name="BatchProductsDataGrid" AutoGenerateColumns="False" Margin="10">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Код Продукта" Binding="{Binding Код_Продукта}" Width="*"/>
-                    <DataGridTextColumn Header="Код Партии" Binding="{Binding Код_Партии}" Width="*"/>
-                    <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+                <TextBlock FontSize="20" Grid.Row="4" Text="Продукты Партии" HorizontalAlignment="Center" Margin="10"/>
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Добавить продукт" Click="AddBatchProductButton_Click"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Редактировать продукт" Click="EditBatchProductButton_Click"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Удалить продукт" Click="DeleteBatchProductButton_Click"/>
+                </StackPanel>
+
+                <DataGrid Name="BatchProductsDataGrid" AutoGenerateColumns="False" Grid.Row="6" Margin="10" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Код Продукта" Binding="{Binding Код_Продукта}" Width="*"/>
+                        <DataGridTextColumn Header="Код Партии" Binding="{Binding Код_Партии}" Width="*"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
     </Grid>
 </Page>

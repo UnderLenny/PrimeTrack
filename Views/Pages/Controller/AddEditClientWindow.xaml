@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
         mc:Ignorable="d"
-        Title="AddEditClientWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="AddEditClientWindow" Height="300" Width="500">
     <Grid>
         <StackPanel>
             <TextBox x:Name="LastNameTextBox" Margin="5"/>

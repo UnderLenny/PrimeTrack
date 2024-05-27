@@ -1,18 +1,7 @@
 ﻿using PrimeTrack.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static PrimeTrack.Views.Pages.ClientsPage;
 
 namespace PrimeTrack.Views.Pages.Controller
@@ -54,13 +43,13 @@ namespace PrimeTrack.Views.Pages.Controller
                 {
                     SqlCommand command;
 
-                    if (_client == null) // Add new client
+                    if (_client == null) // Добавление нового клиента
                     {
                         command = new SqlCommand(
                             "INSERT INTO [dbo].[Клиент] (Фамилия, Имя, Отчество, Дата_Рождения) VALUES (@Фамилия, @Имя, @Отчество, @Дата_Рождения)",
                             sqlConnection);
                     }
-                    else // Edit existing client
+                    else // Редактирование существующего клиента
                     {
                         command = new SqlCommand(
                             "UPDATE [dbo].[Клиент] SET Фамилия = @Фамилия, Имя = @Имя, Отчество = @Отчество, Дата_Рождения = @Дата_Рождения WHERE Код_Клиента = @Код_Клиента",
@@ -75,6 +64,7 @@ namespace PrimeTrack.Views.Pages.Controller
 
                     command.ExecuteNonQuery();
                     MessageBox.Show("Клиент успешно сохранен.");
+                    DialogResult = true;
                     Close();
                 }
             }
@@ -92,5 +82,7 @@ namespace PrimeTrack.Views.Pages.Controller
         {
             Close();
         }
+
+        public Client Client => _client;
     }
 }
