@@ -1,61 +1,18 @@
-﻿<Page x:Class="PrimeTrack.Views.Pages.WarehousesPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PrimeTrack.Views.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="WarehousesPage">
+﻿<Window x:Class="PrimeTrack.Views.Pages.Controller.AddEditWarehouseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent" WindowStyle="None"
+        Title="Добавить/Редактировать Склад" Height="250" Width="300">
 
-    <Page.Resources>
-        <Style x:Key="BorderStyle" TargetType="Border">
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Background" Value="#394141" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-
-        <Style TargetType="DataGrid">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#394141"/>
-            <Setter Property="RowBackground" Value="#2F2F2F"/>
-            <Setter Property="AlternatingRowBackground" Value="#3E3E3E"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CellStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="BorderBrush" Value="Gray"/>
-                        <Setter Property="BorderThickness" Value="0.5"/>
-                        <Setter Property="Padding" Value="5,2,5,2"/>
-                        <Setter Property="Foreground" Value="White"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="ColumnHeaderStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#2B2B2B"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Padding" Value="5,3,5,3"/>
-                        <Setter Property="BorderBrush" Value="Gray"/>
-                        <Setter Property="BorderThickness" Value="1"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="DataGridRow">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="35"/>
-        </Style>
-
+    <Window.Resources>
         <Style x:Key="RoundButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="180"/>
+            <Setter Property="Width" Value="100"/>
             <Setter Property="Background" Value="#485252"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
@@ -114,39 +71,33 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
-    </Page.Resources>
 
-    <Grid>
-        <Border Style="{StaticResource BorderStyle}">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#343C3C" Offset="0.0"/>
-                </LinearGradientBrush>
-            </Border.Background>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <Style TargetType="DatePicker">
+            <Setter Property="Background" Value="#485252"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
 
-                <TextBlock FontSize="20" Grid.Row="0" Text="Управление складами" HorizontalAlignment="Center" Margin="50"/>
+    <Grid Background="#394141">
+        <Border Background="#343C3C" CornerRadius="10" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Margin="10">
+                <TextBlock Text="Город" Margin="5"/>
+                <TextBox x:Name="LocationTextBox" Margin="5"/>
+                <TextBlock Text="Адрес" Margin="5"/>
+                <TextBox x:Name="AddressTextBox" Margin="5"/>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBox x:Name="SearchTextBox" Width="200" Margin="5"/>
-                    <Button Style="{StaticResource RoundButtonStyle}" Content="Поиск" Click="SearchButton_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Сохранить" Click="SaveButton_Click" Margin="5"/>
+                    <Button Style="{StaticResource RoundButtonStyle}" Content="Отмена" Click="CancelButton_Click" Margin="5"/>
                 </StackPanel>
-
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Style="{StaticResource RoundButtonStyle}" Content="Добавить склад" Click="AddWarehouseButton_Click"/>
-                    <Button Style="{StaticResource RoundButtonStyle}" Content="Редактировать склад" Click="EditWarehouseButton_Click"/>
-                    <Button Style="{StaticResource RoundButtonStyle}" Content="Удалить склад" Click="DeleteWarehouseButton_Click"/>
-                </StackPanel>
-
-                <DataGrid x:Name="WarehousesDataGrid" AutoGenerateColumns="True" Grid.Row="3" Margin="10" CanUserAddRows="False" IsReadOnly="True"/>
-            </Grid>
+            </StackPanel>
         </Border>
     </Grid>
-</Page>
+</Window>

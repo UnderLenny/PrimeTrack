@@ -84,7 +84,8 @@
             <PropertyRef Name="Код_Склада" />
           </Key>
           <Property Name="Код_Склада" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Местоположение" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Город" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Адрес" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Партия__Код_Клие__3F466844">
           <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1">
@@ -290,7 +291,8 @@
             <PropertyRef Name="Код_Склада" />
           </Key>
           <Property Name="Код_Склада" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Местоположение" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Город" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Партия" Relationship="Self.FK__Партия__Код_Скла__3E52440B" FromRole="Склад" ToRole="Партия" />
         </EntityType>
         <Association Name="FK__Партия__Код_Клие__3F466844">
@@ -465,7 +467,8 @@
             <EntityTypeMapping TypeName="gev_kpModel.Склад">
               <MappingFragment StoreEntitySet="Склад">
                 <ScalarProperty Name="Код_Склада" ColumnName="Код_Склада" />
-                <ScalarProperty Name="Местоположение" ColumnName="Местоположение" />
+                <ScalarProperty Name="Город" ColumnName="Город" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

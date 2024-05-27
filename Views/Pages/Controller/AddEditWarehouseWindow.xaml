@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+         Background="Transparent" WindowStyle="None"
         Title="Добавить/Редактировать Склад" Height="250" Width="300">
 
     <Window.Resources>

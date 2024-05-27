@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2d69185b7c904b0488e52a41fc0e48ef" Name="Diagram1">
+      <Diagram DiagramId="a5bc847de9204653a60d35ebb03c88b4" Name="Diagram1">
         <EntityTypeShape EntityType="gev_kpModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="gev_kpModel.Клиент" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="gev_kpModel.Партия" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />

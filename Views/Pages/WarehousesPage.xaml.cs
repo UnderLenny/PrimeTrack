@@ -47,7 +47,8 @@ namespace PrimeTrack.Views.Pages
                         warehouses.Add(new Warehouse
                         {
                             Код_Склада = reader.GetInt32(0),
-                            Местоположение = reader.GetString(1)
+                            Город = reader.GetString(1),
+                            Адрес = reader.GetString(2)
                         });
                     }
 
@@ -64,6 +65,101 @@ namespace PrimeTrack.Views.Pages
                 connection.CloseConnection();
             }
         }
+
+        private void AddWarehouseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWarehouseWindow = new AddEditWarehouseWindow();
+            addWarehouseWindow.ShowDialog();
+            LoadWarehousesData();
+        }
+
+        private void EditWarehouseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WarehousesDataGrid.SelectedItem is Warehouse selectedWarehouse)
+            {
+                var editWarehouseWindow = new AddEditWarehouseWindow(selectedWarehouse);
+                editWarehouseWindow.ShowDialog();
+                LoadWarehousesData();
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите склад для редактирования.");
+            }
+        }
+
+        private void DeleteWarehouseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WarehousesDataGrid.SelectedItem is Warehouse selectedWarehouse)
+            {
+                var connection = new Connection();
+
+                try
+                {
+                    connection.OpenConnection();
+                    using (var sqlConnection = connection.GetConnection())
+                    {
+                        SqlCommand command = new SqlCommand("DELETE FROM [dbo].[Склад] WHERE Код_Склада = @Код_Склада", sqlConnection);
+                        command.Parameters.AddWithValue("@Код_Склада", selectedWarehouse.Код_Склада);
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Склад успешно удален.");
+                        LoadWarehousesData();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при удалении склада: " + ex.Message);
+                }
+                finally
+                {
+                    connection.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите склад для удаления.");
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchTerm = SearchTextBox.Text;
+            var connection = new Connection();
+
+            try
+            {
+                connection.OpenConnection();
+                using (var sqlConnection = connection.GetConnection())
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM [dbo].[Склад] WHERE Город LIKE @searchTerm OR Адрес LIKE @searchTerm", sqlConnection);
+                    command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+                    SqlDataReader reader = command.ExecuteReader();
+                    var warehouses = new List<Warehouse>();
+
+                    while (reader.Read())
+                    {
+                        warehouses.Add(new Warehouse
+                        {
+                            Код_Склада = reader.GetInt32(0),
+                            Город = reader.GetString(1),
+                            Адрес = reader.GetString(2)
+                        });
+                    }
+
+                    WarehousesDataGrid.ItemsSource = warehouses;
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)ы
+            {
+                MessageBox.Show("Ошибка при поиске данных: " + ex.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+            }
+        }
+
 
         private void AddWarehouseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -160,7 +256,9 @@ namespace PrimeTrack.Views.Pages
         public class Warehouse
         {
             public int Код_Склада { get; set; }
-            public string Местоположение { get; set; }
+            public string Город { get; set; }
+            public string Адрес { get; set; }
         }
+
     }
 }

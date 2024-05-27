@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrimeTrack.Views.Pages.Controller"
         mc:Ignorable="d"
+        Background="Transparent" WindowStyle="None"
         Title="Редактирование партии" Height="500" Width="500" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

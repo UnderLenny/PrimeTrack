@@ -6,27 +6,53 @@
       xmlns:local="clr-namespace:PrimeTrack.Views.Pages"
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="800"
       Title="OverviewPage">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock FontSize="20" FontWeight="Bold" Margin="10" Text="Обзор текущих данных" />
+    <Grid Background="#394141">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+                <TextBlock FontSize="24" FontWeight="Bold" Foreground="White" Margin="10" Text="Обзор текущих данных" />
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock FontSize="14" FontWeight="Bold" Text="Количество клиентов: " />
-                <TextBlock FontSize="14" Name="ClientCountTextBlock" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" Text="Количество клиентов: " />
+                    <TextBlock FontSize="16" Name="ClientCountTextBlock" Foreground="White"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock FontSize="14" FontWeight="Bold" Text="Количество партий на складе: " />
-                <TextBlock FontSize="14" Name="BatchCountTextBlock" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" Text="Количество партий на складе: " />
+                    <TextBlock FontSize="16" Name="BatchCountTextBlock" Foreground="White"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock FontSize="14" FontWeight="Bold" Text="Средний размер партии: " />
-                <TextBlock FontSize="14" Name="AvgBatchSizeTextBlock" />
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" Text="Средний размер партии: " />
+                    <TextBlock FontSize="16" Name="AvgBatchSizeTextBlock" Foreground="White"/>
+                </StackPanel>
+
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" Margin="20,10,10,10" Text="График количества партий по складам" />
+                <lvc:CartesianChart Name="BatchChart" Margin="10" Height="300">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Склад" LabelsRotation="15"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Количество партий"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" Margin="20,10,10,10" Text="Общая информация" />
+                <TextBlock FontSize="14" Foreground="White" Margin="10" TextWrapping="Wrap">
+                    Добро пожаловать на страницу обзора. Здесь вы можете увидеть ключевую информацию о клиентах и партиях. 
+                    Графики и статистика помогут вам быстро понять текущее состояние системы. Для получения более подробной информации 
+                    воспользуйтесь соответствующими разделами в меню.
+                </TextBlock>
+
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" Margin="20,10,10,10" Text="Гайд" />
+                <TextBlock FontSize="14" Foreground="White" Margin="10" TextWrapping="Wrap">
+                    - Для поиска данных используйте поисковые строки в соответствующих разделах.
+                    - Для добавления, редактирования или удаления данных используйте кнопки действий.
+                    - Данные автоматически обновляются при входе на страницу или при выполнении действий.
+                </TextBlock>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
